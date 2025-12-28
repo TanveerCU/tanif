@@ -222,11 +222,35 @@
             font-size: 0.9rem;
             font-weight: 500;
             backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .control-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .globe-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            flex-shrink: 0;
+        }
+
+        .control-btn:hover .globe-icon {
+            transform: rotate(180deg);
+        }
+
+        .globe-icon circle,
+        .globe-icon path {
+            transition: all 0.3s ease;
+        }
+
+        .lang-text {
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
 
         .theme-selector {
@@ -1146,6 +1170,20 @@
                 font-size: 0.85rem;
             }
 
+            .globe-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .lang-text {
+                display: none;
+            }
+
+            .control-btn.lang-toggle {
+                padding: 0.6rem;
+                aspect-ratio: 1;
+            }
+
             .hero {
                 padding: 5rem 3% 3rem;
                 min-height: auto;
@@ -1438,7 +1476,16 @@
                     <div class="theme-btn theme-dark" data-theme="dark" title="Dark Theme"></div>
                     <div class="theme-btn theme-cultural" data-theme="cultural" title="Cultural Theme"></div>
                 </div>
-                <button class="control-btn lang-toggle" id="langToggle" data-en="عربي" data-ar="English">English</button>
+                <button class="control-btn lang-toggle" id="langToggle" data-en="عربي" data-ar="English">
+                    <svg class="globe-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M12 2C12 2 15 6 15 12C15 18 12 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M12 2C12 2 9 6 9 12C9 18 12 22 12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M2.5 9H21.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M2.5 15H21.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="lang-text">English</span>
+                </button>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
             </div>
         </nav>
@@ -1861,18 +1908,19 @@
             elements.forEach(el=> {
                 if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                     el.placeholder = el.dataset[lang];
-                } else {
+                } else if (!el.closest('.lang-toggle')) {
                     el.textContent = el.dataset[lang];
                 }
             });
 
-            // Update direction
+            // Update direction and language toggle text
+            const langText = langToggle.querySelector('.lang-text');
             if (lang === 'ar') {
                 document.body.setAttribute('dir', 'rtl');
-                langToggle.textContent = langToggle.dataset.ar;
+                if (langText) langText.textContent = langToggle.dataset.ar;
             } else {
                 document.body.setAttribute('dir', 'ltr');
-                langToggle.textContent = langToggle.dataset.en;
+                if (langText) langText.textContent = langToggle.dataset.en;
             }
             
             localStorage.setItem('language', lang);
@@ -2246,6 +2294,7 @@
     </script>
 </body>
 </html>
+
 
 
 
