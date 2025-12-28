@@ -1,0 +1,2249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farabi Al Tanif | Madrasa Graduate Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            overflow-x: hidden;
+        }
+        :root {
+            /* Light Theme */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-card: rgba(255, 255, 255, 0.7);
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --accent-1: #6366f1;
+            --accent-2: #8b5cf6;
+            --accent-3: #ec4899;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow: rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: rgba(26, 26, 26, 0.7);
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-1: #818cf8;
+            --accent-2: #a78bfa;
+            --accent-3: #f472b6;
+            --shadow: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(0, 0, 0, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="cultural"] {
+            --bg-primary: #fef3e2;
+            --bg-secondary: #f5e6d3;
+            --bg-card: rgba(245, 230, 211, 0.7);
+            --text-primary: #2c1810;
+            --text-secondary: #6b4423;
+            --accent-1: #c17817;
+            --accent-2: #8b5a2b;
+            --accent-3: #d4af37;
+            --gradient-1: linear-gradient(135deg, #c17817 0%, #8b5a2b 100%);
+            --gradient-2: linear-gradient(135deg, #d4af37 0%, #c17817 100%);
+            --gradient-3: linear-gradient(135deg, #8b5a2b 0%, #d4af37 100%);
+            --shadow: rgba(193, 120, 23, 0.15);
+            --glass-bg: rgba(212, 175, 55, 0.1);
+            --glass-border: rgba(193, 120, 23, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Tajawal', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 1.6;
+        }
+
+        body[dir="rtl"] {
+            font-family: 'Tajawal', 'Poppins', sans-serif;
+        }
+
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-1);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-2);
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .shape-3 {
+            width: 350px;
+            height: 350px;
+            background: var(--accent-3);
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, -50px) rotate(90deg); }
+            50% { transform: translate(-30px, 30px) rotate(180deg); }
+            75% { transform: translate(30px, 50px) rotate(270deg); }
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 0.75rem 5%;
+            backdrop-filter: blur(20px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 5%;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .theme-selector {
+            display: flex;
+            gap: 0.75rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.15) translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .theme-btn:hover::before {
+            opacity: 1;
+        }
+
+        .theme-btn.active {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-btn.active::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: checkPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes checkPop {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .theme-light { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+        }
+        
+        .theme-light::after {
+            content: '☀️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .theme-light.active::after {
+            content: '';
+        }
+
+        .theme-dark { 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+        }
+        
+        .theme-dark::after {
+            content: '🌙';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .theme-dark.active::after {
+            content: '';
+        }
+
+        .theme-cultural { 
+            background: linear-gradient(135deg, #c17817 0%, #d4af37 50%, #f4e5c2 100%);
+            position: relative;
+        }
+        
+        .theme-cultural::after {
+            content: '🕌';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .theme-cultural.active::after {
+            content: '';
+        }
+
+        /* Hero Section with Creative Profile */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .hero-text {
+            animation: fadeInLeft 1s ease;
+        }
+
+        .greeting {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-1);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Creative Profile Picture Section */
+        .profile-section {
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 350px;
+            height: 450px;
+        }
+
+        .profile-bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape-circle {
+            position: absolute;
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--gradient-1);
+            opacity: 0.2;
+            top: -50px;
+            right: -50px;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            background: var(--gradient-2);
+            opacity: 0.3;
+            bottom: -30px;
+            left: -40px;
+            animation-direction: reverse;
+        }
+
+        .circle-3 {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-3);
+            opacity: 0.25;
+            top: 50%;
+            left: -60px;
+            animation-duration: 15s;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .profile-border {
+            position: absolute;
+            inset: -10px;
+            background: var(--gradient-1);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: morphBorder 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes morphBorder {
+            0%, 100% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+            25% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
+            50% { border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%; }
+            75% { border-radius: 40% 50% 60% 50% / 50% 40% 50% 60%; }
+        }
+
+        .profile-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: morphImage 8s ease-in-out infinite;
+        }
+
+        @keyframes morphImage {
+            0%, 100% { border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; }
+            25% { border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%; }
+            50% { border-radius: 50% 60% 40% 50% / 40% 50% 60% 50%; }
+            75% { border-radius: 40% 50% 60% 50% / 50% 40% 50% 60%; }
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+            transition: all 0.5s ease;
+        }
+
+        .profile-image:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%) contrast(1.2);
+        }
+
+        .floating-badges {
+            position: absolute;
+            left: 50%;
+            bottom: 0.5rem; /* Lowered badges */
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: row;
+            gap: 0.7rem; /* Smaller gap */
+            z-index: 3;
+        }
+
+        .badge {
+            position: static;
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+            padding: 0.5rem 0.9rem; /* Smaller padding */
+            border-radius: 16px;
+            border: 1.2px solid var(--glass-border);
+            box-shadow: 0 6px 18px var(--shadow), 0 1px 4px var(--shadow);
+            animation: floatBadge 3s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .badge-1 {
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            animation-delay: 1s;
+        }
+
+        .badge-3 {
+            animation-delay: 2s;
+        }
+
+        @keyframes floatBadge {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .badge-icon {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            color: var(--accent-1);
+        }
+
+        .badge-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-2);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.10);
+            letter-spacing: 0.02em;
+        }
+
+        /* About Section */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Education Section */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-1);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--bg-primary);
+            z-index: 2;
+        }
+
+        .timeline-year {
+            font-size: 1rem;
+            color: var(--accent-1);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-institution {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .skill-category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-icon {
+            font-size: 1.8rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--bg-card);
+                padding: 0;
+                backdrop-filter: blur(20px);
+                border-top: 1px solid var(--glass-border);
+                box-shadow: 0 10px 30px var(--shadow);
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+            }
+
+            .nav-links.mobile-active {
+                display: flex !important;
+                max-height: 500px;
+                opacity: 1;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.8rem 0;
+                text-align: center;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                gap: 3rem;
+            }
+            
+            .profile-image-wrapper {
+                width: 280px;
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 1.2rem 4%;
+            }
+
+            .hero-content,
+            .about-content,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero {
+                padding: 6rem 4% 4rem;
+            }
+
+            .section {
+                padding: 4rem 4%;
+            }
+
+            .profile-section {
+                order: -1;
+            }
+
+            .profile-container {
+                height: 400px;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: row;
+                padding-left: 2rem;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            .timeline-content {
+                margin-left: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 3%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .controls {
+                gap: 0.5rem;
+            }
+
+            .theme-selector {
+                gap: 0.3rem;
+            }
+
+            .theme-btn {
+                width: 25px;
+                height: 25px;
+            }
+
+            .control-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 5rem 3% 3rem;
+                min-height: auto;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .greeting {
+                font-size: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+                line-height: 1.1;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .profile-container {
+                height: 350px;
+            }
+
+            .profile-image-wrapper {
+                width: 220px;
+                height: 300px;
+            }
+
+            .badge {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.7rem;
+                border-radius: 12px;
+            }
+            .badge-icon {
+                font-size: 0.9rem;
+            }
+            .badge-text {
+                font-size: 0.65rem;
+            }
+
+            .section {
+                padding: 3rem 3%;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .about-text {
+                font-size: 1rem;
+            }
+
+            .timeline {
+                padding: 1rem 0;
+            }
+
+            .timeline-item {
+                margin-bottom: 2.5rem;
+                padding-left: 1.5rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+                margin-left: 1.5rem;
+            }
+
+            .timeline-title {
+                font-size: 1.3rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .skill-category {
+                padding: 1.5rem;
+            }
+
+            .skill-category-title {
+                font-size: 1.3rem;
+            }
+
+            .contact-info {
+                gap: 1.5rem;
+            }
+
+            .contact-card {
+                padding: 1.5rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+
+            footer {
+                padding: 2rem 3%;
+            }
+
+            .social-links {
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .profile-image-wrapper {
+                width: 200px;
+                height: 270px;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+            }
+
+            .timeline-year {
+                font-size: 0.9rem;
+            }
+
+            .timeline-title {
+                font-size: 1.2rem;
+            }
+
+            .timeline-institution,
+            .timeline-description {
+                font-size: 0.9rem;
+            }
+
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            inset:0;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--glass-border);
+            border-top-color: var(--accent-1);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo" data-en="FT" data-ar="فت">FT</div>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                <li><a href="#about" data-en="About" data-ar="عني">About</a></li>
+                <li><a href="#education" data-en="Education" data-ar="التعليم">Education</a></li>
+                <li><a href="#skills" data-en="Skills" data-ar="المهارات">Skills</a></li>
+                <li><a href="#contact" data-en="Contact" data-ar="اتصل">Contact</a></li>
+            </ul>
+
+            <div class="controls">
+                <div class="theme-selector">
+                    <div class="theme-btn theme-light active" data-theme="light" title="Light Theme"></div>
+                    <div class="theme-btn theme-dark" data-theme="dark" title="Dark Theme"></div>
+                    <div class="theme-btn theme-cultural" data-theme="cultural" title="Cultural Theme"></div>
+                </div>
+                <button class="control-btn lang-toggle" id="langToggle" data-en="عربي" data-ar="English">English</button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="greeting" data-en="Assalamu Alaikum, I'm" data-ar="السلام عليكم، أنا">Assalamu Alaikum, I'm</p>
+                <h1 class="hero-title" data-en="Farabi Al Tanif" data-ar="فارابي التنيف">Farabi Al Tanif</h1>
+                <h2 class="hero-subtitle" data-en="Madrasa Graduate & Islamic Scholar" data-ar="خريج المدرسة والعالم الإسلامي">Madrasa Graduate & Islamic Scholar</h2>
+                <p class="hero-description" data-en="Dedicated to preserving Islamic knowledge and bridging traditional scholarship with modern understanding. Specialized in Quranic studies, Hadith, and Islamic jurisprudence." data-ar="مكرس للحفاظ على المعرفة الإسلامية وربط المنحة التقليدية بالفهم الحديث. متخصص في الدراسات القرآنية والحديث والفقه الإسلامي.">
+                    Dedicated to preserving Islamic knowledge and bridging traditional scholarship with modern understanding. Specialized in Quranic studies, Hadith, and Islamic jurisprudence.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn-primary" data-en="Get In Touch" data-ar="تواصل معي">
+                        <span data-en="Get In Touch" data-ar="تواصل معي">Get In Touch</span>
+                        <span>→</span>
+                    </a>
+                    <a href="#education" class="btn-secondary" data-en="View Education" data-ar="عرض التعليم">
+                        <span data-en="View Education" data-ar="عرض التعليم">View Education</span>
+                    </a>
+                </div>
+            </div>
+            <div class="profile-section">
+                <div class="profile-container">
+                    <div class="profile-bg-shapes">
+                        <div class="shape-circle circle-1"></div>
+                        <div class="shape-circle circle-2"></div>
+                        <div class="shape-circle circle-3"></div>
+                    </div>
+                    <div class="profile-frame">
+                        <div class="profile-image-wrapper">
+                            <div class="profile-border"></div>
+                            <div class="profile-image">
+                                <img src="https://private-user-images.githubusercontent.com/20822323/530547074-0c30253a-af0e-4d73-81fd-1a4aa97f6709.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NjY5MjY5NzMsIm5iZiI6MTc2NjkyNjY3MywicGF0aCI6Ii8yMDgyMjMyMy81MzA1NDcwNzQtMGMzMDI1M2EtYWYwZS00ZDczLTgxZmQtMWE0YWE5N2Y2NzA5LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTEyMjglMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUxMjI4VDEyNTc1M1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTBkYzk0ZTJhYzIwNTA2M2EwYzZhZWQxNTQ5ZjdhYWUyYjExZTUwZWI5ZTg1ODc2YmE5MTc1ODM0NjgyMjliNzAmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.02ZmuOcVGBy4psW5ItsFrL_s6vPjZdaLOjTYvTrkygE" alt="Profile Picture">
+                            </div>
+                        </div>
+                        <div class="floating-badges">
+                            <div class="badge badge-1">
+                                <div class="badge-icon">📖</div>
+                                <div class="badge-text" data-en="Quran Expert" data-ar="خبير القرآن">Quran Expert</div>
+                            </div>
+                            <div class="badge badge-2">
+                                <div class="badge-icon">🎓</div>
+                                <div class="badge-text" data-en="Scholar" data-ar="عالم">Scholar</div>
+                            </div>
+                            <div class="badge badge-3">
+                                <div class="badge-icon">✨</div>
+                                <div class="badge-text" data-en="Teacher" data-ar="معلم">Teacher</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title reveal" data-en="About Me" data-ar="معلومات عني">About Me</h2>
+        <p class="section-subtitle reveal" data-en="A passionate scholar dedicated to Islamic education" data-ar="عالم شغوف مكرس للتعليم الإسلامي">A passionate scholar dedicated to Islamic education</p>
+        
+        <div class="about-content">
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label" data-en="Years of Study" data-ar="سنوات الدراسة">Years of Study</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label" data-en="Students Taught" data-ar="الطلاب المدرسين">Students Taught</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label" data-en="Ijazahs Earned" data-ar="الإجازات المكتسبة">Ijazahs Earned</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label" data-en="Lectures Given" data-ar="المحاضرات المعطاة">Lectures Given</div>
+                </div>
+            </div>
+            
+            <div class="reveal">
+                <p class="about-text" data-en="With over a decade of intensive study in traditional Islamic sciences, I have dedicated my life to understanding and teaching the profound wisdom of Islam. My journey began at a young age in a traditional madrasa, where I immersed myself in the study of the Quran, Hadith, and classical Islamic texts." data-ar="مع أكثر من عقد من الدراسة المكثفة في العلوم الإسلامية التقليدية، كرست حياتي لفهم وتعليم الحكمة العميقة للإسلام. بدأت رحلتي في سن مبكرة في مدرسة تقليدية، حيث انغمست في دراسة القرآن والحديث والنصوص الإسلامية الكلاسيكية.">
+                    With over a decade of intensive study in traditional Islamic sciences, I have dedicated my life to understanding and teaching the profound wisdom of Islam. My journey began at a young age in a traditional madrasa, where I immersed myself in the study of the Quran, Hadith, and classical Islamic texts.
+                </p>
+                <p class="about-text" data-en="I hold multiple Ijazahs (certifications) in Quranic recitation, Hadith transmission, and various Islamic sciences. My passion lies in making Islamic knowledge accessible to modern audiences while maintaining the authenticity and depth of traditional scholarship." data-ar="أحمل إجازات متعددة (شهادات) في تلاوة القرآن ونقل الحديث ومختلف العلوم الإسلامية. شغفي يكمن في جعل المعرفة الإسلامية في متناول الجمهور الحديث مع الحفاظ على أصالة وعمق المنحة التقليدية.">
+                    I hold multiple Ijazahs (certifications) in Quranic recitation, Hadith transmission, and various Islamic sciences. My passion lies in making Islamic knowledge accessible to modern audiences while maintaining the authenticity and depth of traditional scholarship.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <h2 class="section-title reveal" data-en="Educational Journey" data-ar="الرحلة التعليمية">Educational Journey</h2>
+        <p class="section-subtitle reveal" data-en="A lifetime dedicated to Islamic scholarship" data-ar="حياة مكرسة للمنحة الإسلامية">A lifetime dedicated to Islamic scholarship</p>
+        
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2023 - Present</div>
+                    <h3 class="timeline-title" data-en="Advanced Islamic Studies" data-ar="الدراسات الإسلامية المتقدمة">Advanced Islamic Studies</h3>
+                    <p class="timeline-institution" data-en="Al-Azhar University, Cairo" data-ar="جامعة الأزهر، القاهرة">Al-Azhar University, Cairo</p>
+                    <p class="timeline-description" data-en="Currently pursuing doctoral studies in Islamic Jurisprudence (Fiqh) and Usul al-Fiqh, focusing on contemporary Islamic legal methodologies and comparative jurisprudence." data-ar="حاليا متابعة الدراسات الدكتوراه في الفقه الإسلامي (الفقه) وأصول الفقه، مع التركيز على المنهجيات القانونية الإسلامية المعاصرة والفقه المقارن.">
+                        Currently pursuing doctoral studies in Islamic Jurisprudence (Fiqh) and Usul al-Fiqh, focusing on contemporary Islamic legal methodologies and comparative jurisprudence.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2018 - 2023</div>
+                    <h3 class="timeline-title" data-en="Alimiyah Degree" data-ar="درجة العالمية">Alimiyah Degree</h3>
+                    <p class="timeline-institution" data-en="Darul Uloom Deoband" data-ar="دار العلوم ديوبند">Darul Uloom Deoband</p>
+                    <p class="timeline-description" data-en="Completed comprehensive Islamic seminary education covering Tafsir, Hadith, Fiqh, Usul al-Fiqh, Arabic Grammar, Logic, and Islamic History. Received Ijazahs in Sahih Bukhari and various other classical texts." data-ar="أكملت التعليم الإسلامي الشامل للحوزة الذي يغطي التفسير والحديث والفقه وأصول الفقه والقواعد العربية والمنطق والتاريخ الإسلامي. حصل على إجازات في صحيح البخاري ومختلف النصوص الكلاسيكية الأخرى.">
+                        Completed comprehensive Islamic seminary education covering Tafsir, Hadith, Fiqh, Usul al-Fiqh, Arabic Grammar, Logic, and Islamic History. Received Ijazahs in Sahih Bukhari and various other classical texts.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2015 - 2018</div>
+                    <h3 class="timeline-title" data-en="Hifz & Qira'at Program" data-ar="برنامج الحفظ والقراءات">Hifz & Qira'at Program</h3>
+                    <p class="timeline-institution" data-en="Madrasa Al-Noor" data-ar="مدرسة النور">Madrasa Al-Noor</p>
+                    <p class="timeline-description" data-en="Memorized the entire Quran and studied the seven Qira'at (recitation styles). Received Ijazah in Hafs 'an 'Asim recitation with connected chain (Sanad) back to Prophet Muhammad (PBUH)." data-ar="حفظ القرآن كله ودرس القراءات السبع (أنماط التلاوة). حصل على إجازة في حفص عن عاصم التلاوة مع سلسلة متصلة (سند) إلى النبي محمد (صلى الله عليه وسلم).">
+                        Memorized the entire Quran and studied the seven Qira'at (recitation styles). Received Ijazah in Hafs 'an 'Asim recitation with connected chain (Sanad) back to Prophet Muhammad (PBUH).
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2012 - 2015</div>
+                    <h3 class="timeline-title" data-en="Foundational Islamic Studies" data-ar="الدراسات الإسلامية التأسيسية">Foundational Islamic Studies</h3>
+                    <p class="timeline-institution" data-en="Madrasah Muhammadia Arabia" data-ar="مدرسة محمدية عربية">Madrasah Muhammadia Arabia</p>
+                    <p class="timeline-description" data-en="Began formal Islamic education with focus on Arabic language, basic Tajweed, Islamic history, and introduction to Hadith and Fiqh literature." data-ar="بدأت التعليم الإسلامي الرسمي مع التركيز على اللغة العربية، والتجويد الأساسي، والتاريخ الإسلامي، ومقدمة للحديث وأدب الفقه.">
+                        Began formal Islamic education with focus on Arabic language, basic Tajweed, Islamic history, and introduction to Hadith and Fiqh literature.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title reveal" data-en="Expertise & Skills" data-ar="الخبرة والمهارات">Expertise & Skills</h2>
+        <p class="section-subtitle reveal" data-en="Comprehensive knowledge across Islamic sciences" data-ar="المعرفة الشاملة عبر العلوم الإسلامية">Comprehensive knowledge across Islamic sciences</p>
+        
+        <div class="skills-grid">
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span class="skill-icon">📖</span>
+                    <span data-en="Quranic Sciences" data-ar="العلوم القرآنية">Quranic Sciences</span>
+                </h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Tafsir (Exegesis)" data-ar="التفسير">Tafsir (Exegesis)</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Tajweed & Qira'at" data-ar="التجويد والقراءات">Tajweed & Qira'at</span>
+                        <span>98%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 98%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Memorization (Hifz)" data-ar="الحفظ">Memorization (Hifz)</span>
+                        <span>100%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span class="skill-icon">📚</span>
+                    <span data-en="Hadith Sciences" data-ar="علوم الحديث">Hadith Sciences</span>
+                </h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Mustalah al-Hadith" data-ar="مصطلح الحديث">Mustalah al-Hadith</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Hadith Memorization" data-ar="حفظ الحديث">Hadith Memorization</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Rijal (Chain Verification)" data-ar="الرجال">Rijal (Chain Verification)</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span class="skill-icon">⚖️</span>
+                    <span data-en="Islamic Jurisprudence" data-ar="الفقه الإسلامي">Islamic Jurisprudence</span>
+                </h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Fiqh (Jurisprudence)" data-ar="الفقه">Fiqh (Jurisprudence)</span>
+                        <span>94%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 94%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Usul al-Fiqh" data-ar="أصول الفقه">Usul al-Fiqh</span>
+                        <span>91%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 91%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Comparative Fiqh" data-ar="الفقه المقارن">Comparative Fiqh</span>
+                        <span>87%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 87%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category reveal">
+                <h3 class="skill-category-title">
+                    <span class="skill-icon">🗣️</span>
+                    <span data-en="Languages" data-ar="اللغات">Languages</span>
+                </h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Classical Arabic" data-ar="العربية الفصحى">Classical Arabic</span>
+                        <span>96%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 96%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="English" data-ar="الإنجليزية">English</span>
+                        <span>93%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 93%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span data-en="Urdu" data-ar="الأردية">Urdu</span>
+                        <span>89%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 89%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title reveal" data-en="Get In Touch" data-ar="تواصل معي">Get In Touch</h2>
+        <p class="section-subtitle reveal" data-en="Feel free to reach out for consultations or collaborations" data-ar="لا تتردد في التواصل للاستشارات أو التعاون">Feel free to reach out for consultations or collaborations</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card reveal">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <h3 data-en="Email" data-ar="البريد الإلكتروني">Email</h3>
+                        <p>ahmed.alhasan@example.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card reveal">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <h3 data-en="Phone" data-ar="الهاتف">Phone</h3>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card reveal">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h3 data-en="Location" data-ar="الموقع">Location</h3>
+                        <p data-en="Cairo, Egypt" data-ar="القاهرة، مصر">Cairo, Egypt</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card reveal">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <h3 data-en="Availability" data-ar="التوفر">Availability</h3>
+                        <p data-en="Sun - Thu: 9AM - 5PM" data-ar="الأحد - الخميس: 9 صباحا - 5 مساء">Sun - Thu: 9AM - 5PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form reveal" id="contactForm">
+                <div class="form-group">
+                    <label data-en="Name" data-ar="الاسم">Name</label>
+                    <input type="text" required placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label data-en="Email" data-ar="البريد الإلكتروني">Email</label>
+                    <input type="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label data-en="Subject" data-ar="الموضوع">Subject</label>
+                    <input type="text" required placeholder="Subject of your message">
+                </div>
+                <div class="form-group">
+                    <label data-en="Message" data-ar="الرسالة">Message</label>
+                    <textarea required placeholder="Your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">
+                    <span data-en="Send Message" data-ar="إرسال رسالة">Send Message</span>
+                    <span>→</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-link" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="YouTube">📺</a>
+            <a href="#" class="social-link" title="Instagram">📷</a>
+            <a href="#" class="social-link" title="Email">✉️</a>
+        </div>
+        <p data-en="© 2024 Ahmed Al-Hassan. All rights reserved." data-ar="© 2024 أحمد الحسن. جميع الحقوق محفوظة.">© 2024 Ahmed Al-Hassan. All rights reserved.</p>
+        <p data-en="Built with dedication to Islamic scholarship" data-ar="بني بتفان للمنحة الإسلامية">Built with dedication to Islamic scholarship</p>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Theme Switcher
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        themeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const theme = btn.dataset.theme;
+                document.body.setAttribute('data-theme', theme);
+                
+                themeButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                localStorage.setItem('theme', theme);
+            });
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+        const savedThemeBtn = document.querySelector(`.theme-btn[data-theme="${savedTheme}"]`);
+        if (savedThemeBtn) savedThemeBtn.classList.add('active');
+
+        // Language Toggle
+        let currentLang = 'en';
+        const langToggle = document.getElementById('langToggle');
+        
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const elements = document.querySelectorAll('[data-en][data-ar]');
+            
+            elements.forEach(el=> {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.dataset[lang];
+                } else {
+                    el.textContent = el.dataset[lang];
+                }
+            });
+
+            // Update direction
+            if (lang === 'ar') {
+                document.body.setAttribute('dir', 'rtl');
+                langToggle.textContent = langToggle.dataset.ar;
+            } else {
+                document.body.setAttribute('dir', 'ltr');
+                langToggle.textContent = langToggle.dataset.en;
+            }
+            
+            localStorage.setItem('language', lang);
+        }
+
+        langToggle.addEventListener('click', () => {
+            updateLanguage(currentLang === 'en' ? 'ar' : 'en');
+        });
+
+        // Load saved language
+        const savedLang = localStorage.getItem('language') || 'en';
+        updateLanguage(savedLang);
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Animate Skill Bars on Scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const width = entry.target.style.width;
+                    entry.target.style.width = '0%';
+                    setTimeout(() => {
+                        entry.target.style.width = width;
+                    }, 100);
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        let menuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuOpen = !menuOpen;
+            
+            if (menuOpen) {
+                navLinks.classList.add('mobile-active');
+                mobileMenuBtn.classList.add('active');
+                mobileMenuBtn.innerHTML = '✕';
+            } else {
+                navLinks.classList.remove('mobile-active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (menuOpen && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                menuOpen = false;
+                navLinks.classList.remove('mobile-active');
+                mobileMenuBtn.classList.remove('active');
+                mobileMenuBtn.innerHTML = '☰';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768 && menuOpen) {
+                    menuOpen = false;
+                    navLinks.classList.remove('mobile-active');
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '☰';
+                }
+            });
+        });
+
+        // Resize handler for mobile menu
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('mobile-active');
+                    mobileMenuBtn.classList.remove('active');
+                    menuOpen = false;
+                    mobileMenuBtn.innerHTML = '☰';
+                }
+            }, 250);
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            
+            // Show success message (you can replace this with actual form submission)
+            alert(currentLang === 'en' 
+                ? 'Thank you for your message! I will get back to you soon.' 
+                : 'شكرا لك على رسالتك! سأعود إليك قريبا.');
+            
+            // Reset form
+            contactForm.reset();
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.floating-shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.1;
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add hover effect to profile image
+        const profileImage = document.querySelector('.profile-image');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth - 0.5;
+            mouseY = e.clientY / window.innerHeight - 0.5;
+        });
+
+        function animateProfile() {
+            if (profileImage) {
+                const x = mouseX * 20;
+                const y = mouseY * 20;
+                profileImage.style.transform = `translate(${x}px, ${y}px)`;
+            }
+            requestAnimationFrame(animateProfile);
+        }
+
+        animateProfile();
+
+        // Typing effect for hero subtitle (optional enhancement)
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        if (heroSubtitle) {
+            const text = heroSubtitle.textContent;
+            heroSubtitle.textContent = '';
+            let i = 0;
+
+            function typeWriter() {
+                if (i < text.length) {
+                    heroSubtitle.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+
+            setTimeout(typeWriter, 500);
+        }
+
+        // Add active state to navigation based on scroll position
+        const sections = document.querySelectorAll('section[id]');
+        
+        function updateActiveNav() {
+            const scrollPosition = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Particle effect on cursor (optional enhancement)
+        const createParticle = (x, y) => {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.width = '5px';
+            particle.style.height = '5px';
+            particle.style.background = 'var(--accent-1)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.opacity = '0.6';
+            particle.style.zIndex = '9999';
+            particle.style.transition = 'all 0.5s ease';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.style.transform = 'translate(' + (Math.random() * 100 - 50) + 'px, ' + (Math.random() * 100 - 50) + 'px) scale(0)';
+                particle.style.opacity = '0';
+            }, 50);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 550);
+        };
+
+        let lastParticleTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastParticleTime > 100) {
+                createParticle(e.clientX, e.clientY);
+                lastParticleTime = now;
+            }
+        });
+
+        // Add animation to badges
+        const badges = document.querySelectorAll('.badge');
+        badges.forEach((badge, index) => {
+            badge.style.animationDelay = `${index * 0.5}s`;
+        });
+
+        // Preload images
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            const src = img.getAttribute('src');
+            if (src) {
+                const image = new Image();
+                image.src = src;
+            }
+        });
+
+        // Add custom cursor (optional)
+        const cursor = document.createElement('div');
+        cursor.style.cssText = `
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        `;
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // Enlarge cursor on hover over interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .control-btn, .theme-btn');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursor.style.background = 'var(--accent-1)';
+                cursor.style.opacity = '0.3';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.background = 'transparent';
+                cursor.style.opacity = '1';
+            });
+        });
+
+        // Easter egg: Konami code
+        let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    document.body.style.animation = 'rainbow 2s linear infinite';
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                        konamiIndex = 0;
+                    }, 5000);
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        // Add rainbow animation for easter egg
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Print greeting in console
+        console.log('%c🌙 Assalamu Alaikum! Welcome to my portfolio 🌙', 
+            'font-size: 20px; font-weight: bold; color: #667eea; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
+        console.log('%cBuilt with dedication to Islamic scholarship', 
+            'font-size: 14px; color: #666;');
+        
+        // Performance optimization: Debounce scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply debounce to scroll handlers
+        window.addEventListener('scroll', debounce(updateActiveNav, 50));
+
+        // Accessibility: Skip to main content
+        const skipLink = document.createElement('a');
+        skipLink.href = '#home';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.className = 'skip-link';
+        skipLink.style.cssText = `
+            position: absolute;
+            top: -100px;
+            position: static;
+            display: flex;
+            flex-direction: row;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            justify-content: center;
+            z-index: 3;`
+        skipLink.addEventListener('focus', () => {
+            skipLink.style.top = '0';
+        });
+        skipLink.addEventListener('blur', () => {
+            skipLink.style.top = '-100px';
+        });
+        document.body.insertBefore(skipLink, document.body.firstChild);
+
+        // Initialize everything
+        console.log('Portfolio initialized successfully! ✨');
+    </script>
+</body>
+</html>
+
