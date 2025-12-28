@@ -1860,6 +1860,15 @@
     </footer>
 
     <script>
+        // Detect touch device
+        const isTouchDevice = () => {
+            return (('ontouchstart' in window) ||
+                   (navigator.maxTouchPoints > 0) ||
+                   (navigator.msMaxTouchPoints > 0));
+        };
+
+        const isTouch = isTouchDevice();
+
         // Loading Screen
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -2065,26 +2074,28 @@
             });
         });
 
-        // Add hover effect to profile image
+        // Add hover effect to profile image - only for non-touch devices
         const profileImage = document.querySelector('.profile-image');
         let mouseX = 0;
         let mouseY = 0;
 
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth - 0.5;
-            mouseY = e.clientY / window.innerHeight - 0.5;
-        });
+        if (!isTouch) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX / window.innerWidth - 0.5;
+                mouseY = e.clientY / window.innerHeight - 0.5;
+            });
 
-        function animateProfile() {
-            if (profileImage) {
-                const x = mouseX * 20;
-                const y = mouseY * 20;
-                profileImage.style.transform = `translate(${x}px, ${y}px)`;
+            function animateProfile() {
+                if (profileImage) {
+                    const x = mouseX * 20;
+                    const y = mouseY * 20;
+                    profileImage.style.transform = `translate(${x}px, ${y}px)`;
+                }
+                requestAnimationFrame(animateProfile);
             }
-            requestAnimationFrame(animateProfile);
-        }
 
-        animateProfile();
+            animateProfile();
+        }
 
         // Typing effect for hero subtitle (optional enhancement)
         const heroSubtitle = document.querySelector('.hero-subtitle');
@@ -2156,13 +2167,15 @@
         };
 
         let lastParticleTime = 0;
-        document.addEventListener('mousemove', (e) => {
-            const now = Date.now();
-            if (now - lastParticleTime > 100) {
-                createParticle(e.clientX, e.clientY);
-                lastParticleTime = now;
-            }
-        });
+        if (!isTouch) {
+            document.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                if (now - lastParticleTime > 100) {
+                    createParticle(e.clientX, e.clientY);
+                    lastParticleTime = now;
+                }
+            });
+        }
 
         // Add animation to badges
         const badges = document.querySelectorAll('.badge');
@@ -2180,40 +2193,42 @@
             }
         });
 
-        // Add custom cursor (optional)
-        const cursor = document.createElement('div');
-        cursor.style.cssText = `
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--accent-1);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            transition: all 0.1s ease;
-            mix-blend-mode: difference;
-        `;
-        document.body.appendChild(cursor);
+        // Add custom cursor (optional) - only for non-touch devices
+        if (!isTouch) {
+            const cursor = document.createElement('div');
+            cursor.style.cssText = `
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--accent-1);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 10000;
+                transition: all 0.1s ease;
+                mix-blend-mode: difference;
+            `;
+            document.body.appendChild(cursor);
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
-        });
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX - 10 + 'px';
+                cursor.style.top = e.clientY - 10 + 'px';
+            });
 
-        // Enlarge cursor on hover over interactive elements
-        const interactiveElements = document.querySelectorAll('a, button, .control-btn, .theme-btn');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'scale(1.5)';
-                cursor.style.background = 'var(--accent-1)';
-                cursor.style.opacity = '0.3';
+            // Enlarge cursor on hover over interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .control-btn, .theme-btn');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(1.5)';
+                    cursor.style.background = 'var(--accent-1)';
+                    cursor.style.opacity = '0.3';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.background = 'transparent';
+                    cursor.style.opacity = '1';
+                });
             });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'scale(1)';
-                cursor.style.background = 'transparent';
-                cursor.style.opacity = '1';
-            });
-        });
+        }
 
         // Easter egg: Konami code
         let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
